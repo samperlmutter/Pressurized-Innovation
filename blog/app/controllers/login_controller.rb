@@ -1,19 +1,8 @@
-    def new
-        @article = Article.new
+class LoginController < ApplicationController
+    def show
     end
     
-    def index
-        @articles = Article.all
+    def forgotCred
+        render 'forgotCred'
     end
-    
-    def create
-        @article = Article.new(article_params)
-       # byebug
-        
-        if @article.save
-            #byebug
-            redirect_to @article
-        else
-            render 'new'
-        end
-    end
+end
