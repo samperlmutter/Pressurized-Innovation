@@ -8,6 +8,17 @@
     <%= @article.text %>
 </p>
 
+<!--NICK ADDED THIS-->
+<p>
+    <strong>Image:</strong>
+</p>
+<p>
+<% if @article.avatar.attached? %>
+    <image src="<%=(url_for(@article.avatar))%>"
+<% end %>
+</p>
+
+
 <h2>Comments</h2>
 <% @article.comments.each do |comment| %>
     <p>

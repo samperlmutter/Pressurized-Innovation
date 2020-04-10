@@ -24,6 +24,20 @@
     <%= f.text_area :text %>
   </p>
  
+ <!-- NICK ADDED THIS -->
+ <%= f.label "Profile Photo" %>
+ <%= f.file_field :avatar %><br>
+ 
+ <!--NICK ADDED THIS-->
+<p>
+    <strong>Image:</strong>
+</p>
+<p>
+<% if @article.avatar.attached? %>
+    <image src="<%=(url_for(@article.avatar))%>"
+<% end %>
+</p>
+ 
   <p>
     <%= f.submit %>
   </p>
