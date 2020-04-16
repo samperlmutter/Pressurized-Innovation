@@ -1,15 +1,22 @@
-
-#follow method for updates from other users
-def follow
+class User < ApplicationRecord
+    belongs_to :user
     
-end
-
-#like method to support users
-def like
+    VALID_EMAIL_REGEX = /A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+    before_save { self.email = email.downcase }
     
-end
-
-#rate method to rate user articles
-def rate
+    validates :name,
+        presence: true,
+        length: { maximum: 12 }
     
+    validates :email,
+        presence: true,
+        length: { maximum: 255 },
+        format: { with: VALID_EMAIL_REGEX },
+        uniqueness: { case_sensitive: false }
+        
+    validates :password,
+        presence: true,
+        length: { minimum: 6 }
+        
+    has_secure_password
 end
