@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   resources :articles do
     resources :comments
+    get 'like', on: :member
   end
   
   ####################################

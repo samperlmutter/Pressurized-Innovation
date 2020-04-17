@@ -12,6 +12,11 @@
     <%= @article.text %>
 </p>
 
+<p>
+    <strong>Likes:</strong>
+    <%= @article.likes %>
+</p>
+
 <!--NICK ADDED THIS-->
 <p>
     <strong>Image:</strong>
@@ -50,5 +55,9 @@
         <%= f.submit %>
     </p>
 <% end %>
+
+<%= link_to 'Like article', like_article_url %>
+
+<br/>
 
 <%= link_to 'Article List', articles_path %>

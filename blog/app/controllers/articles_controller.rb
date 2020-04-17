@@ -11,10 +11,10 @@ class ArticlesController < ApplicationController
     def create
         @article = Article.new(article_params)
         @article.user_id = current_user
-       # byebug
+        @article.user = current_user
+        @article.likes = 0
         
         if @article.save
-            #byebug
             redirect_to @article
         else
             render 'new'
@@ -43,6 +43,12 @@ class ArticlesController < ApplicationController
         @article.destroy
         
         redirect_to articles_path
+    end
+    
+    def like
+        @article = Article.find(params[:id])
+        Article.increment_counter(:likes, @article.id)
+        redirect_to @article
     end
 end
 
