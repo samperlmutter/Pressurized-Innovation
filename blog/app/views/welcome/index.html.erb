@@ -12,7 +12,12 @@
     <%= link_to 'Profile', current_user %>
 <% end %>
 
-<div class="img"><p>Featured Article</p></div>
+<div class="img">
+    <p>Featured Article</p>
+<% Article.maximum("likes") %>
+
+
+</div>
 
 
 <p>

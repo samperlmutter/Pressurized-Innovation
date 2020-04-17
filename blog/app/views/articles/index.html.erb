@@ -4,11 +4,12 @@
 </p>
 </div>
 
-<h1>Listing articles</h1>
+<h1>Article Listing</h1>
 <%= link_to 'New article', new_article_path %>
 
 <table>
   <tr>
+    <th>Author</th>
     <th>Title</th>
     <th>Text</th>
     <th>Likes</th>
@@ -16,6 +17,7 @@
  
   <% @articles.each do |article| %>
     <tr>
+      <td><%= article.user %></td>
       <td><%= article.title %></td>
       <td><%= article.text %></td>
       <td><%= article.likes %></td>

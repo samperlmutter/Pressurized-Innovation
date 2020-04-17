@@ -30,8 +30,21 @@
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation %>
   </div>
+  
+    <div class="field">
+    <%= form.label "Profile Photo" %>
+    <%= form.file_field :profilepic %><br>
+    <p>
+    <% if @user.profilepic.attached? %>
+      <image src="<%=(url_for(@user.profilepic))%>">
+    <% end %>
+    </p>
+
+  </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>
+

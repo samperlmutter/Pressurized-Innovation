@@ -2,6 +2,11 @@
   
   <h1 class="text-center"><%= @user.name %></h1>
   
+  <p class="text-center"><strong>Profile Picture:</strong></p>
+    <% if @user.profilepic.attached? %>
+      <image class="center" src="<%=(url_for(@user.profilepic))%>">
+    <% end %>
+  
   <p class="text-center">
     <strong>Email:</strong>
     <%= @user.email %>
