@@ -19,12 +19,20 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show info', user %></td>
+        <td><%= link_to 'Edit info', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy account', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
+</table>
+
+<table class ="info">
+  <thead>
+    <tr>
+      <th>Your Articles</th>
+    </tr>
+  </thead>
 </table>
 
 
