@@ -6,9 +6,11 @@
 
 <%= link_to 'Article Listing', controller: 'articles' %>
 
-<div class ="profile">
-    <%= link_to 'Profile', controller: 'users' %>
-</div>
+<br/>
+
+<% if current_user %>
+    <%= link_to 'Profile', current_user %>
+<% end %>
 
 <div class="img"><p>Featured Article</p></div>
 

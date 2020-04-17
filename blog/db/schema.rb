@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_031224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "likes", default: 0
+    t.decimal "likes"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
