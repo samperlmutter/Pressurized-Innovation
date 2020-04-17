@@ -10,5 +10,13 @@
   <%= @user.email %>
 </p>
 
+<p>
+  
+  <p><strong>Profile Picture:</strong></p>
+    <% if @user.profilepic.attached? %>
+      <image src="<%=(url_for(@user.profilepic))%>">
+    <% end %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
