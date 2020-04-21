@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <%= link_to image_tag("logo.png", style: 'max-height: 40px'), controller: 'welcome' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <%= link_to 'Articles', articles_url, class: 'nav-item nav-link' %>
+          <% if current_user %>
+              <%= link_to "#{current_user.name}'s profile", current_user, class: 'nav-item nav-link' %>
+              <%= link_to "Log Out", logout_path, class: 'nav-item nav-link' %>
+          <% else %>
+              <%= link_to "Sign Up", signup_path, class: 'nav-item nav-link' %>
+              <%= link_to "Log In", login_path, class: 'nav-item nav-link' %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

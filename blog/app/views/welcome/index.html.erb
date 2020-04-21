@@ -1,31 +1,4 @@
 <div class="img">
-<p>
-<%= image_tag "logo.png", size: "256x160" %>
-</p>
-</div>
-
-<%= link_to 'Article Listing', controller: 'articles' %>
-
-<br/>
-
-<% if current_user %>
-    <%= link_to 'Profile', current_user %>
-<% end %>
-
-<div class="img">
     <p>Featured Article</p>
-<% Article.maximum("likes") %>
-
-
+    <% Article.maximum("likes") %>
 </div>
-
-
-<p>
-    <% if current_user %>
-        Logged in as <%= current_user.name %>
-        <%= link_to "Log Out", logout_path %>
-    <% else %>
-        <%= link_to "Sign Up", signup_path %> or
-        <%= link_to "Log In", login_path %>
-    <% end %>
-</p>
