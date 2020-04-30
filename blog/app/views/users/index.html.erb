@@ -27,33 +27,6 @@
   </tbody>
 </table>
 
-
-<h5 class="text-center">Your Articles</h5>
-
-<table>
-  <thead>
-    <th>Bio</th></th>
-  </thead>
-<tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.bio %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<table class ="info">
-  <thead>
-    <tr>
-      <th>Your Articles</th>
-    </tr>
-  </thead>
-</table>
-
-
-
 <br>
 
 <%= link_to 'Back', welcome_index_url %>

@@ -23,7 +23,7 @@
 </p>
 <p>
 <% if @article.avatar.attached? %>
-    <image src="<%=(url_for(@article.avatar))%>"
+    <image src="<%=(url_for(@article.avatar))%>" style="width:100%;max-width:400px"></image>
 <% end %>
 </p>
 

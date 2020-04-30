@@ -3,13 +3,21 @@
   <h1 class="text-center"><%= @user.name %></h1>
   
   <p class="text-center"><strong>Profile Picture:</strong></p>
+
+  <p class="text-center">
     <% if @user.profilepic.attached? %>
-      <image class="center" src="<%=(url_for(@user.profilepic))%>">
+      <image src="<%=(url_for(@user.profilepic))%>" style="width:100%;max-width:300px"></image>
     <% end %>
+  </p>
   
   <p class="text-center">
     <strong>Email:</strong>
     <%= @user.email %>
+  </p>
+  
+  <p class="text-center">
+    <strong>Bio:</strong>
+    <%= @user.bio %>
   </p>
   
   <p class="text-center"><%= link_to 'Edit', edit_user_path(@user) %></p>
@@ -26,26 +34,8 @@
     <% end %>
   </div>
   
+
+  
   
   <%= link_to 'Back', users_path %>
 </div>
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-      <%= @user.bio %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
