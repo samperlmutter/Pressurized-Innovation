@@ -14,7 +14,7 @@
 
 <p>
     <strong>Likes:</strong>
-    <%= @article.likes %>
+    <%= @article.likes.count %>
 </p>
 
 <!--NICK ADDED THIS-->
@@ -56,7 +56,7 @@
     </p>
 <% end %>
 
-<%= link_to 'Like article', like_article_url %>
+<%= link_to 'Like article', like_create_path(:article_id => @article.id) %>
 
 <br/>
 

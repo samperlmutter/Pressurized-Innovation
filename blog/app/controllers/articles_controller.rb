@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
         @article = Article.new(article_params)
         @article.user_id = current_user
         @article.user = current_user
-        @article.likes = 0
         
         if @article.save
             redirect_to @article
