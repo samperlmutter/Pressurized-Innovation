@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_142013) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.decimal "likes"
+    t.integer "likes", default: 0
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_142013) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
