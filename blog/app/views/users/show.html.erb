@@ -1,34 +1,32 @@
-<div class="container-fluid">
+<div class="container-fluid text-center">
   
-  <h1 class="text-center"><%= @user.name %></h1>
+  <h1><%= @user.name %></h1>
   
-  <p class="text-center"><strong>Profile Picture:</strong></p>
+  <p><strong>Profile Picture:</strong></p>
 
-  <p class="text-center">
+  <p>
     <% if @user.profilepic.attached? %>
       <image src="<%=(url_for(@user.profilepic))%>" style="width:100%;max-width:300px"></image>
     <% end %>
   </p>
   
-  <p class="text-center">
+  <p>
     <strong>Email:</strong>
     <%= @user.email %>
   </p>
   
-  <p class="text-center">
+  <p>
     <strong>Bio:</strong>
     <%= @user.bio %>
   </p>
 
-  <p class="text-center"><%= link_to 'Liked articles', user_likes_path(@user) %></p>
+  <p><%= link_to 'Liked articles', user_likes_path(@user) %></p>
   
-  <p class="text-center"><%= link_to 'Edit', edit_user_path(@user) %></p>
+  <p><%= link_to 'Edit', edit_user_path(@user) %></p>
   
   <div class="card-columns justify-content-center d-flex flex-column mx-auto" style="max-width: 500px">
     <% @user.articles.each do |article| %>
       <%= render 'articles/preview', article: article %>
     <% end %>
   </div>
-
-  <%= link_to 'Back', users_path %>
 </div>
