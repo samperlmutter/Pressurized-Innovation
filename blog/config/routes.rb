@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   
   get 'users/forgotCred'
   
+  resources :users, only: [:show] do
+    get 'likes', to: 'like#index'
+  end
+  
   root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
