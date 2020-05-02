@@ -1,0 +1,7 @@
+<div class="card">
+    <div class="card-header row no-gutters">
+        <div class="col-md-10"><%= link_to article.title, article %></div>
+        <div class="col text-right"><%= article.likes.count %> likes</div>
+    </div>
+    <div class="card-body"><%= article.text %></div>
+</div>

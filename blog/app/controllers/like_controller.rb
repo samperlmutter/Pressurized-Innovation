@@ -21,4 +21,9 @@ class LikeController < ApplicationController
     
     redirect_to @article
   end
+  
+  def index
+    @likes = Like.where(user_id: params[:user_id])
+    @user = User.find(params[:user_id])
+  end
 end

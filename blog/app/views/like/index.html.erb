@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <h1 class="text-center"><%= @user.name %>'s liked articles</h1>
+    
+    <div class="card-columns justify-content-center d-flex flex-column mx-auto" style="max-width: 500px">
+        <% @likes.each do |like| %>
+          <%= render 'articles/preview', article: like.article %>
+        <% end %>
+    </div>
+    
+    <%= link_to 'Back', @user %>
+</div>
