@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'like/new'
   get 'like/create'
+  get 'like/delete'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'

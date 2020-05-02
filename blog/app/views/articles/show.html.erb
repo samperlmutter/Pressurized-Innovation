@@ -56,7 +56,11 @@
     </p>
 <% end %>
 
-<%= link_to 'Like article', like_create_path(:article_id => @article.id) %>
+<% if @article.is_liked(current_user) %>
+    <%= link_to 'Unlike article', like_delete_path(:article_id => @article.id) %>
+<% else %>
+    <%= link_to 'Like article', like_create_path(:article_id => @article.id) %>
+<% end %>
 
 <br/>
 

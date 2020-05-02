@@ -6,10 +6,19 @@ class LikeController < ApplicationController
   def create
     @article = Article.find(params[:article_id])
     @like = @article.likes.new
-    @like.user_id = current_user
-    @like.article_id = @article
+    @like.user_id = current_user.id
+    @like.article_id = @article.id
     
-    @like.save
+    if @like.save
+      redirect_to @article
+    end
+  end
+  
+  def delete
+    @article = Article.find(params[:article_id])
+    @like = Like.where(article_id: @article.id, user_id: current_user.id)
+    Like.delete(@like)
+    
     redirect_to @article
   end
 end
