@@ -1,67 +1,59 @@
-<p>
-<%= image_tag "logo.png", size: "256x160" %>
-</p>
+<div class="container-fluid text-center">
+    <h1><%= @article.title %><br/></h1>
+    <div class="media">
+      <div class="media-body">
+        &mdash; <%= @article.user.name %>
+        <br/>
+        <%= @article.likes.count %>
+        <% if @article.is_liked(current_user) %>
+            <%= link_to raw('<i id="liked-like-button" class="material-icons text-danger"></i>'), like_delete_path(:article_id => @article.id) %>
+        <% else %>
+            <%= link_to raw('<i id="unliked-like-button" class="material-icons text-danger"></i>'), like_create_path(:article_id => @article.id) %>
+        <% end %>
+      </div>
+    </div>
+    
+    <% if @article.avatar.attached? %>
+        <image src="<%=(url_for(@article.avatar))%>" style="width:100%;max-width:400px"></image>
+    <% end %>
+    
+    <br/>
 
-<p>
-    <strong>Title: </strong>
-    <%= @article.title %>
-</p>
-
-<p>
-    <strong>Text:</strong>
-    <%= @article.text %>
-</p>
-
-<p>
-    <strong>Likes:</strong>
-    <%= @article.likes.count %>
-</p>
-
-<!--NICK ADDED THIS-->
-<p>
-    <strong>Image:</strong>
-</p>
-<p>
-<% if @article.avatar.attached? %>
-    <image src="<%=(url_for(@article.avatar))%>" style="width:100%;max-width:400px"></image>
-<% end %>
-</p>
-
-
-<h2>Comments</h2>
-<% @article.comments.each do |comment| %>
     <p>
-        <strong>Commenter:</strong>
-        <%= comment.commenter %>
+        <%= @article.text %>
     </p>
     
-    <p>
-        <strong>Comment:</strong>
-        <%= comment.body %>
-    </p>
-<% end %>
-
-<h2>Add a comment:</h2>
-<%= form_for([@article, @article.comments.build]) do |f| %>
-    <p>
-        <%= f.label :commenter %><br>
-        <%= f.text_field :commenter %>
-    </p>
-    <p>
-        <%= f.label :body %><br>
-        <%= f.text_area :body %>
-    </p>
-    <p>
-        <%= f.submit %>
-    </p>
-<% end %>
-
-<% if @article.is_liked(current_user) %>
-    <%= link_to 'Unlike article', like_delete_path(:article_id => @article.id) %>
-<% else %>
-    <%= link_to 'Like article', like_create_path(:article_id => @article.id) %>
-<% end %>
-
-<br/>
-
-<%= link_to 'Article List', articles_path %>
+    <h2>Comments</h2>
+    <!--<ul class="list-unstyled">-->
+    <ul class="list-group list-group-flush">
+        <% @article.comments.each do |comment| %>
+            <!--<li class="media">-->
+            <!--    <div class="media-body">-->
+            <!--        <h5 class="mt-0 mb-1"><%= comment.commenter %></h5>-->
+            <!--        <%= comment.body %>-->
+            <!--    </div>-->
+            <!--</li>-->
+            <li class="list-group-item">
+              <%= comment.body %>
+              <footer class="blockquote-footer">
+                <%= comment.commenter %>
+              </footer>
+            </li>
+        <% end %>
+    </ul>
+    
+    <h2>Add a comment:</h2>
+    <%= form_for([@article, @article.comments.build]) do |f| %>
+        <p>
+            <%= f.label :commenter %><br>
+            <%= f.text_field :commenter %>
+        </p>
+        <p>
+            <%= f.label :body %><br>
+            <%= f.text_area :body %>
+        </p>
+        <p>
+            <%= f.submit %>
+        </p>
+    <% end %>
+</div>
