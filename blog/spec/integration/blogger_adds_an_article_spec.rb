@@ -259,3 +259,84 @@ feature "Blogger can view liked articles on their profile page" do
         expect(page).to have_content("New Capybara Article")
     end 
 end
+
+feature "Blogger can view articles on the article listing page" do
+    scenario "Blogger successfully creates two new articles" do
+        # USER ACCOUNT CREATED AND SIGNED IN
+        visit signup_path
+        expect(page).to have_content("New User")
+        fill_in "Name", with: "Capybara Name"
+        fill_in "Email", with: "CapybaraEmail@gmail.com"
+        fill_in "Bio", with: "Capybara bio"
+        fill_in "Password", with: "123456"
+        fill_in "Password confirmation", with: "123456"
+        click_button "Create User"
+        expect(page).to have_content("Capybara Name")
+        visit login_path
+        expect(page).to have_content("Login")
+        fill_in "Email", with: "capybaraemail@gmail.com"
+        fill_in "Password", with: "123456"
+        click_button "Login"
+        expect(page).to have_content("Featured Article") 
+        # USER IS NOW SIGNED IN
+        # USER CREATES AN ARTICLE
+        visit new_article_path
+        expect(page).to have_content("New Article")
+        fill_in "Title", with: "New Capybara Article"
+        fill_in "Text", with: "This is a new Capybara article"
+        click_button "Submit"
+        expect(page).to have_content("New Capybara Article")
+        expect(page).to have_content("This is a new Capybara article")
+        # USER CREATES ANOTHER ARTICLE
+        visit new_article_path
+        expect(page).to have_content("New Article")
+        fill_in "Title", with: "Another New Capybara Article"
+        fill_in "Text", with: "This is another new Capybara article"
+        click_button "Submit"
+        expect(page).to have_content("Another New Capybara Article")
+        expect(page).to have_content("This is another new Capybara article")
+    end
+
+        scenario "Blogger views articles on the article listing page" do
+        # USER ACCOUNT CREATED AND SIGNED IN
+        visit signup_path
+        expect(page).to have_content("New User")
+        fill_in "Name", with: "Capybara Name"
+        fill_in "Email", with: "CapybaraEmail@gmail.com"
+        fill_in "Bio", with: "Capybara bio"
+        fill_in "Password", with: "123456"
+        fill_in "Password confirmation", with: "123456"
+        click_button "Create User"
+        expect(page).to have_content("Capybara Name")
+        visit login_path
+        expect(page).to have_content("Login")
+        fill_in "Email", with: "capybaraemail@gmail.com"
+        fill_in "Password", with: "123456"
+        click_button "Login"
+        expect(page).to have_content("Featured Article") 
+        # USER IS NOW SIGNED IN
+        # USER CREATES AN ARTICLE
+        visit new_article_path
+        expect(page).to have_content("New Article")
+        fill_in "Title", with: "New Capybara Article"
+        fill_in "Text", with: "This is a new Capybara article"
+        click_button "Submit"
+        expect(page).to have_content("New Capybara Article")
+        expect(page).to have_content("This is a new Capybara article")
+        # USER CREATES ANOTHER ARTICLE
+        visit new_article_path
+        expect(page).to have_content("New Article")
+        fill_in "Title", with: "Another New Capybara Article"
+        fill_in "Text", with: "This is another new Capybara article"
+        click_button "Submit"
+        expect(page).to have_content("Another New Capybara Article")
+        expect(page).to have_content("This is another new Capybara article")
+        # USER NAVIGATES TO THE ARTICLE LISTING PAGE
+        visit articles_url
+        expect(page).to have_content("Article Listing")
+        expect(page).to have_content("New Capybara Article")
+        expect(page).to have_content("This is a new Capybara article")
+        expect(page).to have_content("Another New Capybara Article")
+        expect(page).to have_content("This is another new Capybara article")
+    end 
+end
