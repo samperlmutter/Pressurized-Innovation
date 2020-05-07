@@ -11,7 +11,7 @@
     <% @articles.each do |article| %>
       <div class="card">
         <div class="card-header">
-            <div class="float-left"><%= link_to article.title, article %></div>
+            <div id="article-title" class="float-left"><%= link_to article.title, article %></div>
             <div class="float-right"><%= article.likes.count %> likes</div>
             <div class="clearfix"></div>
         </div>
@@ -21,11 +21,11 @@
         <div class="card-footer text-muted">
           <div class="float-left">By <%= article.user.name %></div>
           <div class="float-right">
-            <%= link_to raw('<i class="material-icons">create</i>'), edit_article_path(article) %>
+            <%= link_to raw('<i class="material-icons">create</i>'), edit_article_path(article), id: "edit-button" %>
             <%= link_to raw('<i class="material-icons text-danger">delete</i>'),
                                 article_path(article),
                                 method: :delete,
-                                data: { confirm: 'Are you sure?' } %>
+                                data: { confirm: 'Are you sure?' }, id: "delete-button" %>
           </div>
           <div class="clearfix"></div>
         </div>

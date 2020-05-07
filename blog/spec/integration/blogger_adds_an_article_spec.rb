@@ -52,7 +52,7 @@ feature "Blogger creates a new Article" do
     end
     scenario "Blogger successfully navigates to the new articles page from the listing articles page" do
         visit articles_path
-        expect(page).to have_content("Article Listing")
+        expect(page).to have_content("Articles")
         click_link "New article"
         expect(page).to have_content("New Article")
         expect(page).to have_field("Title")
@@ -139,9 +139,10 @@ feature "Blogger has the ability to like an article" do
         expect(page).to have_content("This is a new Capybara article")
         # USER NAVIGATES TO THE ARTICLE LISTING PAGE
         visit articles_url
-        expect(page).to have_content("Article Listing")
-        click_text = "Show"
-        page.find(:xpath,"//*[text()='#{click_text}']").click
+        expect(page).to have_content("Articles")
+        # click_text = 
+        # page.find(:xpath,"//*[text()='#{click_text}']").click
+        find('#article-title').click
         expect(page).to have_content("New Capybara Article")
         expect(page).to have_content("This is a new Capybara article")
         expect(page).to have_content("0")
@@ -204,8 +205,8 @@ feature "Blogger can view liked articles on their profile page" do
         expect(page).to have_content("This is a new Capybara article")
         # USER NAVIGATES TO THE ARTICLE LISTING PAGE
         visit articles_url
-        expect(page).to have_content("Article Listing")
-        page.find(:xpath,"//*[text()='#{"Show"}']").click
+        expect(page).to have_content("Articles")
+               find('#article-title').click
         expect(page).to have_content("New Capybara Article")
         expect(page).to have_content("This is a new Capybara article")
         expect(page).to have_content("0")
@@ -239,8 +240,8 @@ feature "Blogger can view liked articles on their profile page" do
         expect(page).to have_content("This is a new Capybara article")
         # USER NAVIGATES TO THE ARTICLE LISTING PAGE
         visit articles_url
-        expect(page).to have_content("Article Listing")
-        page.find(:xpath,"//*[text()='#{"Show"}']").click
+        expect(page).to have_content("Articles")
+        find('#article-title').click
         expect(page).to have_content("New Capybara Article")
         expect(page).to have_content("This is a new Capybara article")
         expect(page).to have_content("0")
@@ -329,7 +330,7 @@ feature "Blogger can view articles on the article listing page" do
         expect(page).to have_content("This is another new Capybara article")
         # USER NAVIGATES TO THE ARTICLE LISTING PAGE
         visit articles_url
-        expect(page).to have_content("Article Listing")
+        expect(page).to have_content("Articles")
         expect(page).to have_content("New Capybara Article")
         expect(page).to have_content("This is a new Capybara article")
         expect(page).to have_content("Another New Capybara Article")
@@ -392,8 +393,10 @@ feature "Blogger can edit an article" do
         expect(page).to have_content("This is a new Capybara article")
         # USER THEN EDITS THE ARTICLE
         visit articles_url
-        expect(page).to have_content("Article Listing")
-        page.find(:xpath,"//*[text()='#{"Edit"}']").click
+        expect(page).to have_content("Articles")
+        #page.find(:xpath,"//*[text()='#{"create"}']").click
+        find("#edit-button").click
+        print page.body
         expect(page).to have_content("Editing article")
         fill_in "Title", with: "Edited New Capybara Article"
         fill_in "Text", with: "This is an edited new Capybara article"
@@ -461,8 +464,8 @@ feature "Blogger can leave a comment on an article" do
         expect(page).to have_content("This is a new Capybara article")
         # USER THEN EDITS THE ARTICLE
         visit articles_url
-        expect(page).to have_content("Article Listing")
-        page.find(:xpath,"//*[text()='#{"Show"}']").click
+        expect(page).to have_content("Articles")
+        visit article_path(1)
         expect(page).to have_content("Add a comment:")
         fill_in "Commenter", with: "Capybara Commenter"
         fill_in "Body", with: "This is example text for a comment"
