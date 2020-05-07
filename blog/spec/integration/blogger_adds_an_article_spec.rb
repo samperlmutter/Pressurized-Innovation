@@ -144,10 +144,9 @@ feature "Blogger has the ability to like an article" do
         page.find(:xpath,"//*[text()='#{click_text}']").click
         expect(page).to have_content("New Capybara Article")
         expect(page).to have_content("This is a new Capybara article")
-        expect(page).to have_content("Likes: 0")
-        click_text = "Like article"
-        page.find(:xpath,"//*[text()='#{click_text}']").click
-        expect(page).to have_content("Likes: 1")
+        expect(page).to have_content("0")
+        visit like_create_path(:article_id => 1)
+        expect(page).to have_content("1")
     end 
 end
 
@@ -209,9 +208,9 @@ feature "Blogger can view liked articles on their profile page" do
         page.find(:xpath,"//*[text()='#{"Show"}']").click
         expect(page).to have_content("New Capybara Article")
         expect(page).to have_content("This is a new Capybara article")
-        expect(page).to have_content("Likes: 0")
-        page.find(:xpath,"//*[text()='#{"Like article"}']").click
-        expect(page).to have_content("Likes: 1")
+        expect(page).to have_content("0")
+        visit like_create_path(:article_id => 1)
+        expect(page).to have_content("1")
     end 
         scenario "Blogger views liked articles on their profile page" do
         # USER ACCOUNT CREATED AND SIGNED IN
@@ -244,13 +243,10 @@ feature "Blogger can view liked articles on their profile page" do
         page.find(:xpath,"//*[text()='#{"Show"}']").click
         expect(page).to have_content("New Capybara Article")
         expect(page).to have_content("This is a new Capybara article")
-        expect(page).to have_content("Likes: 0")
-        page.find(:xpath,"//*[text()='#{"Like article"}']").click
-        expect(page).to have_content("Likes: 1")
+        expect(page).to have_content("0")
+        visit like_create_path(:article_id => 1)
+        expect(page).to have_content("1")
         # USER NOW NAVIGATES TO THEIR PROFILE PAGE
-        #print page.body
-        #page.find(:xpath,"//*[normalize-space(text())='#{"Capybara Name&#39;s profile"}']").click
-        #page.find_all(:xpath, "//*[normalize-space(text())='#{"Capybara Name&#39;s profile"}']").first.click
         visit user_path(1)
         expect(page).to have_content("Capybara Name")
         expect(page).to have_content("Liked articles")
@@ -472,8 +468,7 @@ feature "Blogger can leave a comment on an article" do
         fill_in "Body", with: "This is example text for a comment"
         click_button "Create Comment"
         expect(page).to have_content("Comments")
-        expect(page).to have_content("Commenter: Capybara Commenter")
-        expect(page).to have_content("Comment: This is example text for a comment")
-
+        expect(page).to have_content("Capybara Commenter")
+        expect(page).to have_content("This is example text for a comment")
     end 
 end
