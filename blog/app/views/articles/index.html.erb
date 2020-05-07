@@ -19,7 +19,7 @@
           <%= article.text %>
         </div>
         <div class="card-footer text-muted">
-          <div class="float-left">By <%= article.user.name %></div>
+          <div class="float-left">By <%= link_to article.user.name, user_path(article.user) %></div>
           <div class="float-right">
             <%= link_to raw('<i class="material-icons">create</i>'), edit_article_path(article), id: "edit-button" %>
             <%= link_to raw('<i class="material-icons text-danger">delete</i>'),
