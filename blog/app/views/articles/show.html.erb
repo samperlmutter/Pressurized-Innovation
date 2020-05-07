@@ -27,14 +27,9 @@
     <!--<ul class="list-unstyled">-->
     <ul class="list-group list-group-flush">
         <% @article.comments.each do |comment| %>
-            <!--<li class="media">-->
-            <!--    <div class="media-body">-->
-            <!--        <h5 class="mt-0 mb-1"><%= comment.commenter %></h5>-->
-            <!--        <%= comment.body %>-->
-            <!--    </div>-->
-            <!--</li>-->
             <li class="list-group-item">
               <%= comment.body %>
+              <%= link_to raw('<i class="material-icons text-danger float-right">delete</i>'), [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
               <footer class="blockquote-footer">
                 <%= comment.commenter %>
               </footer>
