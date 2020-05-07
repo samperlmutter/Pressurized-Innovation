@@ -1,34 +1,34 @@
-<div class="img">
-<p>
-<%= image_tag "logo.png", size: "256x160" %>
-</p>
+<div class="container-fluid text-center">
+  <div class="img">
+    <p>
+    <%= image_tag "logo.png", size: "256x160" %>
+    </p>
+  </div>
+  
+  <div class="card-columns justify-content-center d-flex flex-column mx-auto" style="max-width: 500px">
+    <%= link_to 'New article', new_article_path, class: "btn btn-success float-right" %>
+    <% @articles.each do |article| %>
+      <div class="card">
+        <div class="card-header">
+            <div class="float-left"><%= link_to article.title, article %></div>
+            <div class="float-right"><%= article.likes.count %> likes</div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="card-body">
+          <%= article.text %>
+        </div>
+        <div class="card-footer text-muted">
+          <div class="float-left">By <%= article.user.name %></div>
+          <div class="float-right">
+            <%= link_to raw('<i class="material-icons">create</i>'), edit_article_path(article) %>
+            <%= link_to raw('<i class="material-icons text-danger">delete</i>'),
+                                article_path(article),
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' } %>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<h1>Article Listing</h1>
-<%= link_to 'New article', new_article_path %>
-
-<table>
-  <tr>
-    <th>Author</th>
-    <th>Title</th>
-    <th>Text</th>
-    <th>Likes</th>
-  </tr>
- 
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.user.name %></td>
-      <td><%= article.title %></td>
-      <td><%= article.text %></td>
-      <td><%= article.likes.count %></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td><%= link_to 'Destroy',
-                              article_path(article),
-                              method: :delete,
-                              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
-
-<%= link_to 'Back', welcome_index_url %>
